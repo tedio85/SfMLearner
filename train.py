@@ -26,7 +26,7 @@ flags.DEFINE_boolean("continue_train", False, "Continue training from previous c
 
 # added
 flags.DEFINE_integer("num_scales", 4, "Number of scales")
-falgs.DEFINE_integer("num_source", 2, "Number of source images")
+flags.DEFINE_integer("num_source", 2, "Number of source images")
 
 FLAGS = flags.FLAGS
 
