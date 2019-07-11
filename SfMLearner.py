@@ -201,9 +201,6 @@ class SfMLearner(object):
         #     tf.summary.histogram(var.op.name + "/gradients", grad)
 
     def train(self, opt):
-        opt.num_source = opt.seq_length - 1
-        # TODO: currently fixed to 4
-        opt.num_scales = 4
         self.opt = opt
         self.build_train_graph()
         self.collect_summaries()
