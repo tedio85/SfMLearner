@@ -103,10 +103,10 @@ class kitti_raw_loader(object):
     def load_example(self, frames, tgt_idx):
         image_seq, zoom_x, zoom_y = self.load_image_sequence(frames, tgt_idx, self.seq_length)
         tgt_drive, tgt_cid, tgt_frame_id = frames[tgt_idx].split(' ')
-        intrinsics = self.load_intrinsics_raw(tgt_drive, tgt_cid, tgt_frame_id)
-        intrinsics = self.scale_intrinsics(intrinsics, zoom_x, zoom_y)
+        # intrinsics = self.load_intrinsics_raw(tgt_drive, tgt_cid, tgt_frame_id)
+        # intrinsics = self.scale_intrinsics(intrinsics, zoom_x, zoom_y)
         example = {}
-        example['intrinsics'] = intrinsics
+        # example['intrinsics'] = intrinsics
         example['image_seq'] = image_seq
         example['folder_name'] = tgt_drive + '_' + tgt_cid + '/'
         example['file_name'] = tgt_frame_id

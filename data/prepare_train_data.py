@@ -11,8 +11,8 @@ parser.add_argument("--dataset_dir", type=str, required=True, help="where the da
 parser.add_argument("--dataset_name", type=str, required=True, choices=["kitti_raw_eigen", "kitti_raw_stereo", "kitti_odom", "cityscapes"])
 parser.add_argument("--dump_root", type=str, required=True, help="Where to dump the data")
 parser.add_argument("--seq_length", type=int, required=True, help="Length of each training sequence")
-parser.add_argument("--img_height", type=int, default=128, help="image height")
-parser.add_argument("--img_width", type=int, default=416, help="image width")
+parser.add_argument("--img_height", type=int, default=192, help="image height")
+parser.add_argument("--img_width", type=int, default=640, help="image width")
 parser.add_argument("--num_threads", type=int, default=4, help="number of threads to use")
 args = parser.parse_args()
 
@@ -31,11 +31,11 @@ def dump_example(n, args):
     if example == False:
         return
     image_seq = concat_image_seq(example['image_seq'])
-    intrinsics = example['intrinsics']
-    fx = intrinsics[0, 0]
-    fy = intrinsics[1, 1]
-    cx = intrinsics[0, 2]
-    cy = intrinsics[1, 2]
+    # intrinsics = example['intrinsics']
+    # fx = intrinsics[0, 0]
+    # fy = intrinsics[1, 1]
+    # cx = intrinsics[0, 2]
+    # cy = intrinsics[1, 2]
     dump_dir = os.path.join(args.dump_root, example['folder_name'])
     # if not os.path.isdir(dump_dir):
     #     os.makedirs(dump_dir, exist_ok=True)
@@ -46,9 +46,9 @@ def dump_example(n, args):
             raise
     dump_img_file = dump_dir + '/%s.jpg' % example['file_name']
     scipy.misc.imsave(dump_img_file, image_seq.astype(np.uint8))
-    dump_cam_file = dump_dir + '/%s_cam.txt' % example['file_name']
-    with open(dump_cam_file, 'w') as f:
-        f.write('%f,0.,%f,0.,%f,%f,0.,0.,1.' % (fx, cx, fy, cy))
+    # dump_cam_file = dump_dir + '/%s_cam.txt' % example['file_name']
+    # with open(dump_cam_file, 'w') as f:
+    #     f.write('%f,0.,%f,0.,%f,%f,0.,0.,1.' % (fx, cx, fy, cy))
 
 def main():
     if not os.path.exists(args.dump_root):
