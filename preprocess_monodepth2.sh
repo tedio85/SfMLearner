@@ -1,5 +1,5 @@
 #!/bin/bash
-pip install joblib
+pip2 install joblib
 python data/prepare_train_data.py \
 --dataset_dir=/viscompfs/users/tedyu/kitti_data/kitti/ \
 --dataset_name='kitti_raw_eigen' \
